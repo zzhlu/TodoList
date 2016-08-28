@@ -2,7 +2,10 @@ import React, {Component} from 'react';
 
 export default class AddTodo extends Component {
   onAdd() {
-    this.props.add(this.refs.input.value);
+    if (this.refs.input.value !== '') {
+      this.props.add(this.refs.input.value);
+      this.refs.input.value = '';
+    }
   }
 
   render() {
