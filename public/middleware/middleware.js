@@ -7,7 +7,20 @@ export default function (store) {
         request.post('/todo')
           .send({text: action.text})
           .end((err, res)=> {
-            next({type: "ADD", todos: res.body});
+            next({type: "GETTODOS", todos: res.body});
+          })
+      }
+      if (action.type === 'DELETE') {
+        request.delete('/todo')
+          .send({index: action.index})
+          .end((err, res) => {
+            next({type: "GETTODOS", todos: res.body});
+          })
+      }
+      if (action.type === 'GETTODOS') {
+        request.get('/todos')
+          .end((err, res) => {
+            next({type: "GETTODOS", todos: res.body});
           })
       }
     }

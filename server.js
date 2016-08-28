@@ -9,8 +9,18 @@ app.use(express.static('./public'));
 app.use(express.static('./dist'));
 
 const todos = [];
+
 app.post('/todo', (req, res) => {
   todos.push({text: req.body.text, isDone: false});
+  res.send(todos);
+});
+
+app.delete('/todo', (req, res) => {
+  todos.splice(req.body.index, 1);
+  res.send(todos);
+});
+
+app.get('/todos', (req, res) => {
   res.send(todos);
 });
 

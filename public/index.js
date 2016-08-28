@@ -11,6 +11,10 @@ const createStoreMiddleware = applyMiddleware(middleware)(createStore);
 const store = createStoreMiddleware(reducer);
 
 class App extends Component {
+  componentDidMount(){
+    store.dispatch({type:'GETTODOS'});
+  }
+
   render() {
     return <div>
       <AddTodo />
