@@ -1,7 +1,7 @@
 import AddTodo from '../components/add-todo';
 import {connect} from 'react-redux';
 
-const mapDispatchOnProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     add: (text) => {
       dispatch({type: 'ADD', text});
@@ -9,4 +9,6 @@ const mapDispatchOnProps = (dispatch) => {
   }
 };
 
-export default connect(()=> { return {} }, mapDispatchOnProps)(AddTodo);
+export default connect(()=> {
+  return {}
+}, mapDispatchToProps)(AddTodo);

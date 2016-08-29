@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
+export  default  class TodoList extends Component {
+  onDelete(id) {
+    this.props.delete(id);
+  }
 
-export default class TodoList extends Component {
-  onDelete(index) {
-    this.props.delete(index);
+  onToggle(id) {
+    this.props.toggle(id);
   }
 
   render() {
-    const todos = this.props.todos.map((todo, index) => {
+    const todos = this.props.todos.map((todo, index)=> {
       return <div key={index}>
-        {todo.text}
-        <button onClick={this.onDelete.bind(this, index)}>X</button>
+        <input type="checkbox" checked={todo.isDone} onClick={this.onToggle.bind(this, todo.id)}/>
+        <span style={{"textDecoration": todo.isDone ? 'line-through' : ''}}>{todo.text}</span>
+        <button onClick={this.onDelete.bind(this, todo.id)}>X</button>
       </div>
     });
     return <div>
